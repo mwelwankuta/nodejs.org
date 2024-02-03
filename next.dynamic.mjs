@@ -22,7 +22,7 @@ import { compileMDX } from './next.mdx.compiler.mjs';
 // This is the combination of the Application Base URL and Base PATH
 const baseUrlAndPath = `${BASE_URL}${BASE_PATH}`;
 
-// This is a small utility that allows us to quickly separate locale from the remaning pathname
+// This is a small utility that allows us to quickly separate locale from the remaining pathname
 const getPathname = (path = []) => path.join('/');
 
 // This maps a pathname into an actual route object that can be used
@@ -79,7 +79,7 @@ const getDynamicRouter = async () => {
    * This method returns a list of all routes that exist for a given locale
    *
    * @param {string} locale
-   * @returns {string[]}
+   * @returns {Array<string>}
    */
   const getRoutesByLanguage = async (locale = defaultLocale.code) => {
     const shouldIgnoreStaticRoute = pathname =>

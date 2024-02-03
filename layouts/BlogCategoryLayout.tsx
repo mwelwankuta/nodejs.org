@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import type { FC } from 'react';
 
 import { getClientContext } from '@/client-context';
-import { Time } from '@/components/Common/Time';
+import FormattedTime from '@/components/Common/FormattedTime';
 import Link from '@/components/Link';
 import Pagination from '@/components/Pagination';
 import getBlogData from '@/next-data/blogData';
@@ -10,7 +10,7 @@ import getBlogData from '@/next-data/blogData';
 const getCategoryData = async (pathname: string) => {
   // pathname format can either be: /en/blog/{category}
   // or /en/blog/{category}/page/{page}
-  // hence we attempt to interpolate the full /en/blog/{categoy}/page/{page}
+  // hence we attempt to interpolate the full /en/blog/{category}/page/{page}
   // and in case of course no page argument is provided we define it to 1
   // note that malformed routes can't happen as they are all statically generated
   const [, , category = 'all', , page = 1] = pathname.split('/');
@@ -41,10 +41,8 @@ const BlogCategoryLayout: FC = async () => {
       <ul className="blog-index">
         {posts.map(({ slug, date, title }) => (
           <li key={slug}>
-            <Time
-              date={date}
-              format={{ year: 'numeric', month: 'short', day: '2-digit' }}
-            />
+            <FormattedTime date={date} />
+
             <Link href={slug}>{title}</Link>
           </li>
         ))}
